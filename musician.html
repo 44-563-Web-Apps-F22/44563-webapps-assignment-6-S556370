@@ -28,17 +28,15 @@
     <button onclick=" checkGuess()" style="margin-top: 20px;" value="">Check the guess</button>
 </form>
 </div>
-
-
-<p class="container" style="margin-top: 50px; margin-left:300px" id="result">wrong = 1 / correct = 0 </p>
+<div class="container" style="margin-top: 50px; margin-left:300px" >Result : <span id="result"> This text will be replaced. </span> </div>
 
 <script> 
 var correct=0,wrong=0;
 function checkGuess(){    
+    event.preventDefault();
     console.log("Getting form values")
-    var secretMusician = document.getElementById("secret_vale").value
-    var guessedMusician = document.getElementById("guess_musician").value
-    var result = document.getElementById("result");
+    var secretMusician = document.getElementById("secret_vale").value;
+    var guessedMusician = document.getElementById("guess_musician").value;    
    
     if(secretMusician === guessedMusician){
         alert("You got it right");
@@ -47,8 +45,7 @@ function checkGuess(){
         alert("Wrong Musician");
         wrong++;        
     }
-    // reult.innerHtml = "mk";
-    result.innerHTML = "wrong ="+wrong+" / correct ="+correct;
+    document.getElementById("result").innerHTML = "wrong ="+wrong+" / correct ="+correct;
 }
 </script>
 
