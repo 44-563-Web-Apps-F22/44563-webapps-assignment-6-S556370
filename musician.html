@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Musicians</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+
+<head>
+    <title>Musicians</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-    
-    </head>
- 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+
+</head>
+
 <body>
 
     <h1 style="margin-top: 50px; margin-left:80px">
         "Musician guess by - Murali Krishna, Sundari."
     </h1>
 
-<div class="container" style="margin-top: 150px; margin-left:300px">
-<form >
-    <label for="secret_value" style="margin-top: 20px;">Enter the secret musician name </label>
-    <input type ="password" id="secret_vale" name="secret_vale"
-     min=10 max=50 value="John Lennon"> <br>
-    <label for="guess_musician"  style="margin-top: 20px;">Guess the musician </label>
-    <input type ="text" id="guess_musician" name="guess_musician" autofocus> <br>
+    <div class="container" style="margin-top: 100px; margin-left:300px">
+        <form>
+            <label for="secret_value" style="margin-top: 20px;">Enter the secret musician name </label>
+            <input type="password" id="secret_vale" name="secret_vale" min=10 max=50 value="John Lennon"> <br>
+            <label for="guess_musician" style="margin-top: 20px;">Guess the musician </label>
+            <input type="text" id="guess_musician" name="guess_musician" autofocus> <br>
 
-    <button onclick=" checkGuess()" style="margin-top: 20px;" value="">Check the guess</button>
-</form>
-</div>
-<div class="container" style="margin-top: 50px; margin-left:300px" >Result : <span id="result"> This text will be replaced. </span> </div>
+            <button onclick=" checkGuess()" style="margin-top: 20px;" value="">Check the guess</button>
+        </form>
+    </div>
+    <div class="container" style="margin-top: 50px; margin-left:300px; margin-bottom:20px;">Result : <span id="result">
+            This text will be replaced. </span> </div>
+    <div class="container">
+        <img id="insectImage" src="Dragonflies.jpg" alt="Dragon Fly Image" height="100px" width="100px"
+            onclick="swapImage()" />
+    </div>
+    <script>
+        var correct = 0, wrong = 0, useImage = 1;
+        function checkGuess() {
+            event.preventDefault();
+            console.log("Getting form values")
+            var secretMusician = document.getElementById("secret_vale").value;
+            var guessedMusician = document.getElementById("guess_musician").value;
 
-<script> 
-var correct=0,wrong=0;
-function checkGuess(){    
-    event.preventDefault();
-    console.log("Getting form values")
-    var secretMusician = document.getElementById("secret_vale").value;
-    var guessedMusician = document.getElementById("guess_musician").value;    
-   
-    if(secretMusician === guessedMusician){
-        alert("You got it right");
-        correct++;        
-    } else {
-        alert("Wrong Musician");
-        wrong++;        
-    }
-    document.getElementById("result").innerHTML = "wrong ="+wrong+" / correct ="+correct;
-}
-</script>
+            if (secretMusician === guessedMusician) {
+                alert("You got it right");
+                correct++;
+            } else {
+                alert("Wrong Musician");
+                wrong++;
+            }
+            document.getElementById("result").innerHTML = "wrong =" + wrong + " / correct =" + correct;
+        }
+        function swapImage() {
+            switch (useImage) {
+                case 1: document.getElementById("insectImage").src = "Dragonflies.jpg"; useImage = 2; break;
+                case 2: document.getElementById("insectImage").src = "snakeflies.jpg"; useImage = 3; break;
+                case 3: document.getElementById("insectImage").src = "Unlined Giant Chafer Beetle.jpg"; useImage = 1; break;
+                default: document.getElementById("insectImage").src = "Dragonflies.jpg"; useImage = 2;
+            }
+        }
+    </script>
 
 </body>
-</html> 
+
+</html>
