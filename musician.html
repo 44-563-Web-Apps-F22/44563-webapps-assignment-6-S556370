@@ -27,7 +27,7 @@
             <label for="guess_musician" style="margin-top: 20px;">Guess the musician </label>
             <input type="text" id="guess_musician" name="guess_musician" autofocus> <br>
 
-            <button onclick=" checkGuess()" style="margin-top: 20px;" value="">Check the guess</button>
+            <button onclick=" checkGuess()" id="form1GuessButton"style="margin-top: 20px;" value="">Check the guess</button>
         </form>
     </div>
     <div class="container" style="margin-top: 50px; margin-left:300px; margin-bottom:20px;">Result : <span id="result">
@@ -37,21 +37,29 @@
             onclick="swapImage()" />
     </div>
     <script>
-        var correct = 0, wrong = 0, useImage = 1;
+        var correct = 0, wrong = 0, useImage = 1, temp =0;
         function checkGuess() {
-            event.preventDefault();
-            console.log("Getting form values")
+            event.preventDefault();                        
             var secretMusician = document.getElementById("secret_vale").value;
             var guessedMusician = document.getElementById("guess_musician").value;
-
+            
             if (secretMusician === guessedMusician) {
                 alert("You got it right");
                 correct++;
+                temp=0;
             } else {
                 alert("Wrong Musician");
                 wrong++;
+                temp++;
             }
             document.getElementById("result").innerHTML = "wrong =" + wrong + " / correct =" + correct;
+            if(temp >= 3){
+                document.getElementById("form1GuessButton").setAttribute('onclick',exceedLimit());
+            }
+            
+        }
+        function exceedLimit(){
+            alert("Sorry, game over.");
         }
         function swapImage() {
             switch (useImage) {
