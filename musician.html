@@ -11,18 +11,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
         crossorigin="anonymous"></script>
-        <style>
+    <style>
         .basic-style {
             margin-top: 20px;
             margin-bottom: 20px;
             margin-right: 10px;
         }
-        </style>
-       
+    </style>
+
 
 </head>
 
-<body class=" bg-gradient"> 
+<body class=" bg-gradient">
 
     <h1 style="margin-top: 50px; margin-left:80px">
         "Musician guess by - Murali Krishna, Sundari."
@@ -30,46 +30,53 @@
 
     <div class="container bg-light" style="margin-top: 100px; margin-left:300px">
         <form>
-            <label class="basic-style" for="secret_value" style="margin-top: 20px;">Enter the secret musician name </label>
-            <input class="basic-style" type="password" id="secret_vale" name="secret_vale" min=10 max=50 value="John Lennon"> <br>
+            <label class="basic-style" for="secret_value" style="margin-top: 20px;">Enter the secret musician name
+            </label>
+            <input class="basic-style" type="password" id="secret_vale" name="secret_vale" min=10 max=50
+                value="John Lennon"> <br>
             <label class="basic-style" for="guess_musician" style="margin-top: 20px;">Guess the musician </label>
             <input class="basic-style" type="text" id="guess_musician" name="guess_musician" autofocus> <br>
 
-            <button class="basic-style bg-info "onclick=" checkGuess()" id="form1GuessButton"style="margin-top: 20px;" value="">Check the guess</button>
+            <button class="basic-style bg-info " onclick=" checkGuess()" id="form1GuessButton" style="margin-top: 20px;"
+                value="">Check the guess</button>
         </form>
     </div>
-    <div class="container bg-light" style="margin-top: 50px; margin-left:300px; margin-bottom:20px;">Result : <span id="result">
+    <div class="container bg-light" style="margin-top: 50px; margin-left:300px; margin-bottom:20px;">Result : <span
+            id="result">
             This text will be replaced. </span> </div>
     <div class="container bg-light">
-        <img class="basic-style" id="insectImage" src="Dragonflies.jpg" alt="Dragon Fly Image" height="100px" width="100px"
-            onclick="swapImage()" /><br>
-            <span class="basic-style">Click on the image to swap with other image.</span>
+        <img class="basic-style" id="insectImage" src="Dragonflies.jpg" alt="Dragon Fly Image" height="100px"
+            width="100px" onclick="swapImage()" /><br>
+        <span class="basic-style">Click on the image to swap with other image.</span>
     </div>
     <script>
-        var correct = 0, wrong = 0, useImage = 1, temp =0;
+        var correct = 0, wrong = 0, useImage = 1, temp = 0;
         function checkGuess() {
-            event.preventDefault();                        
+            event.preventDefault();
             var secretMusician = document.getElementById("secret_vale").value;
             var guessedMusician = document.getElementById("guess_musician").value;
-            
+
             if (secretMusician === guessedMusician) {
                 alert("You got it right");
                 correct++;
-                temp=0;
+                temp = 0;
             } else {
                 alert("Wrong Musician");
                 wrong++;
                 temp++;
             }
             document.getElementById("result").innerHTML = "wrong =" + wrong + " / correct =" + correct;
-            if(temp >= 3){
-                document.getElementById("form1GuessButton").setAttribute('onclick',exceedLimit());
+            if (temp == 3) {
+                document.getElementById("form1GuessButton").setAttribute('onclick', exceedLimit());
             }
-            
+
         }
-        function exceedLimit(){
-            alert("Sorry, game over.");
+        function exceedLimit() {
+            setTimeout(() => {
+                alert("Sorry, game over."); // logged after 5 second
+            }, 1000);
         }
+
         function swapImage() {
             switch (useImage) {
                 case 1: document.getElementById("insectImage").src = "Dragonflies.jpg"; useImage = 2; break;
